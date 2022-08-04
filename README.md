@@ -1,12 +1,48 @@
 
 
-# ChartsPocMono
+# Charts POC Monorepo
 
 This project was generated using [Nx](https://nx.dev).
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
 
-🔎 **Smart, Fast and Extensible Build System**
+
+## [Nivo](https://nivo.rocks/)
+
+By default nx generates react app using react `v18`. Nivo only work with react <`v18`.
+
+Installed dependencies with `--legacy-peer-deps` flag:
+
+```
+npm i @nivo/core @nivo/line --legacy-peer-deps
+```
+
+
+
+
+
+## Generate a new app
+
+To generate an app using [JavaScript](https://nx.dev/guides/js-and-ts) instead of TypeScript
+
+```
+nx generate @nrwl/react:app APP-NAME --js
+```
+
+
+
+
+
+## Remove an app
+
+To remove an app
+
+```
+nx generate remove APP-NAME
+```
+
+
+
+
 
 ## Adding capabilities to your workspace
 
