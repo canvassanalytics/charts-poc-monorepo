@@ -1,5 +1,5 @@
 /* eslint-disable */
-export default {
+module.exports = {
   displayName: 'nivo',
   preset: '../../jest.preset.js',
   transform: {

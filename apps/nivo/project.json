@@ -12,8 +12,8 @@
         "outputPath": "dist/apps/nivo",
         "index": "apps/nivo/src/index.html",
         "baseHref": "/",
-        "main": "apps/nivo/src/main.tsx",
-        "polyfills": "apps/nivo/src/polyfills.ts",
+        "main": "apps/nivo/src/main.js",
+        "polyfills": "apps/nivo/src/polyfills.js",
         "tsConfig": "apps/nivo/tsconfig.app.json",
         "assets": ["apps/nivo/src/favicon.ico", "apps/nivo/src/assets"],
         "styles": [],
@@ -30,8 +30,8 @@
         "production": {
           "fileReplacements": [
             {
-              "replace": "apps/nivo/src/environments/environment.ts",
-              "with": "apps/nivo/src/environments/environment.prod.ts"
+              "replace": "apps/nivo/src/environments/environment.js",
+              "with": "apps/nivo/src/environments/environment.prod.js"
             }
           ],
           "optimization": true,
@@ -71,7 +71,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/apps/nivo"],
       "options": {
-        "jestConfig": "apps/nivo/jest.config.ts",
+        "jestConfig": "apps/nivo/jest.config.js",
         "passWithNoTests": true
       }
     }
