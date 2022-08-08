@@ -2,7 +2,7 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
-    "nivo": "apps/nivo",
-    "nivo-e2e": "apps/nivo-e2e"
+    "echarts": "apps/echarts",
+    "echarts-e2e": "apps/echarts-e2e"
   }
 }

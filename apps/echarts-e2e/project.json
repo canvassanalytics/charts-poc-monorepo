@@ -1,18 +1,18 @@
 {
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/nivo-e2e/src",
+  "sourceRoot": "apps/echarts-e2e/src",
   "projectType": "application",
   "targets": {
     "e2e": {
       "executor": "@nrwl/cypress:cypress",
       "options": {
-        "cypressConfig": "apps/nivo-e2e/cypress.config.ts",
-        "devServerTarget": "nivo:serve:development",
+        "cypressConfig": "apps/echarts-e2e/cypress.config.ts",
+        "devServerTarget": "echarts:serve:development",
         "testingType": "e2e"
       },
       "configurations": {
         "production": {
-          "devServerTarget": "nivo:serve:production"
+          "devServerTarget": "echarts:serve:production"
         }
       }
     },
@@ -20,10 +20,10 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/nivo-e2e/**/*.js"]
+        "lintFilePatterns": ["apps/echarts-e2e/**/*.js"]
       }
     }
   },
   "tags": [],
-  "implicitDependencies": ["nivo"]
+  "implicitDependencies": ["echarts"]
 }
