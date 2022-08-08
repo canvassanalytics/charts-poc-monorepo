@@ -9,6 +9,7 @@
     },
     "private": true,
     "dependencies": {
-        "echarts": "^5.3.3"
+        "echarts": "^5.3.3",
+        "echarts-for-react": "^3.0.2"
     }
 }
