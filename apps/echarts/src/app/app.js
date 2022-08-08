@@ -61,30 +61,12 @@ export function App() {
         </NavList>
       </NavBar>
       <Routes>
-        <Route
-          path="/"
-          element={<h1>ECharts POC</h1>}
-        />
-        <Route
-          path="/line"
-          element={<LinePlot />}
-        />
-        <Route
-          path="/area"
-          element={<AreaPlot />}
-        />
-        <Route
-          path="/scatter"
-          element={<SactterPlot />}
-        />
-        <Route
-          path="/bar"
-          element={<BarPlot />}
-        />
-        <Route
-          path="/histogram"
-          element={<HistogramPlot />}
-        />
+        <Route path="/" element={<h1>ECharts POC</h1>} />
+        <Route path="/line" element={<LinePlot />} />
+        <Route path="/area" element={<AreaPlot />} />
+        <Route path="/scatter" element={<SactterPlot />} />
+        <Route path="/bar" element={<BarPlot />} />
+        <Route path="/histogram" element={<HistogramPlot />} />
       </Routes>
     </StyledApp>
   );
