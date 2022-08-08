@@ -1,14 +1,18 @@
 import styled from 'styled-components';
-import NxWelcome from './nx-welcome';
 
 import { Route, Routes, Link } from 'react-router-dom';
+import { generateTimeseriesData } from '@charts-poc-mono/data-utils';
+
 const StyledApp = styled.div`
   // Your style here
 `;
 export function App() {
+  const data = generateTimeseriesData(10);
   return (
     <StyledApp>
-      <NxWelcome title="echarts" />
+      <div>
+        {data.map(datum => <p>x: {datum.x} y: {datum.y}</p>)}
+      </div>
 
       {/* START: routes */}
       {/* These routes and navigation have been generated for you */}
