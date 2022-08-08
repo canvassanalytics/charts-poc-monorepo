@@ -1,52 +1,58 @@
-import styled from 'styled-components';
-
 import { Route, Routes, Link } from 'react-router-dom';
-import { generateTimeseriesData } from '@charts-poc-mono/data-utils';
+import styled from 'styled-components/macro';
 
-const StyledApp = styled.div`
-  // Your style here
+import LinePlot from './components/LinePlot';
+
+const StyledApp = styled.div``;
+const NavBar = styled.div``;
+const NavList = styled.ul`
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 `;
+const NavItem = styled.li`
+  float: left;
+`;
+const NavLink = styled(Link)`
+  display: block;
+  color: grey;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+
+  &:hover {
+    color: black;
+    font-weight: 600;
+  }
+`;
+
 export function App() {
-  const data = generateTimeseriesData(10);
+  // const data = generateTimeseriesData(10);
   return (
     <StyledApp>
-      <div>
+      {/* <div>
         {data.map(datum => <p>x: {datum.x} y: {datum.y}</p>)}
-      </div>
-
-      {/* START: routes */}
-      {/* These routes and navigation have been generated for you */}
-      {/* Feel free to move and update them to fit your needs */}
+      </div> */}
+      <NavBar role="navigation">
+        <NavList>
+          <NavItem>
+            <NavLink to="/">Home</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink to="/line">Line Plot</NavLink>
+          </NavItem>
+        </NavList>
+      </NavBar>
       <br />
-      <hr />
-      <br />
-      <div role="navigation">
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/page-2">Page 2</Link>
-          </li>
-        </ul>
-      </div>
       <Routes>
         <Route
           path="/"
-          element={
-            <div>
-              This is the generated root route.{' '}
-              <Link to="/page-2">Click here for page 2.</Link>
-            </div>
-          }
+          element={<h1>ECharts POC</h1>}
         />
         <Route
-          path="/page-2"
-          element={
-            <div>
-              <Link to="/">Click here to go back to root page.</Link>
-            </div>
-          }
+          path="/line"
+          element={<LinePlot />}
         />
       </Routes>
       {/* END: routes */}
