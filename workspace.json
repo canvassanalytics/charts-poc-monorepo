@@ -3,6 +3,8 @@
   "version": 2,
   "projects": {
     "echarts": "apps/echarts",
-    "echarts-e2e": "apps/echarts-e2e"
+    "echarts-e2e": "apps/echarts-e2e",
+    "plotly": "apps/plotly",
+    "plotly-e2e": "apps/plotly-e2e"
   }
 }
