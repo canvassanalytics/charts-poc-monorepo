@@ -28,7 +28,8 @@ To generate an app using [JavaScript](https://nx.dev/guides/js-and-ts) instead o
 nx generate @nrwl/react:app APP-NAME --js
 ```
 
-
+Install local dependacies into the new app by adding a `package.json` to the app's folder
+and installing packages within the new app's folder
 
 
 

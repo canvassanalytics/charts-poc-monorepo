@@ -1,6 +1,6 @@
 {
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/nivo/src",
+  "sourceRoot": "apps/echarts/src",
   "projectType": "application",
   "targets": {
     "build": {
@@ -9,13 +9,13 @@
       "defaultConfiguration": "production",
       "options": {
         "compiler": "babel",
-        "outputPath": "dist/apps/nivo",
-        "index": "apps/nivo/src/index.html",
+        "outputPath": "dist/apps/echarts",
+        "index": "apps/echarts/src/index.html",
         "baseHref": "/",
-        "main": "apps/nivo/src/main.js",
-        "polyfills": "apps/nivo/src/polyfills.js",
-        "tsConfig": "apps/nivo/tsconfig.app.json",
-        "assets": ["apps/nivo/src/favicon.ico", "apps/nivo/src/assets"],
+        "main": "apps/echarts/src/main.js",
+        "polyfills": "apps/echarts/src/polyfills.js",
+        "tsConfig": "apps/echarts/tsconfig.app.json",
+        "assets": ["apps/echarts/src/favicon.ico", "apps/echarts/src/assets"],
         "styles": [],
         "scripts": [],
         "webpackConfig": "@nrwl/react/plugins/webpack"
@@ -30,8 +30,8 @@
         "production": {
           "fileReplacements": [
             {
-              "replace": "apps/nivo/src/environments/environment.js",
-              "with": "apps/nivo/src/environments/environment.prod.js"
+              "replace": "apps/echarts/src/environments/environment.js",
+              "with": "apps/echarts/src/environments/environment.prod.js"
             }
           ],
           "optimization": true,
@@ -47,15 +47,15 @@
       "executor": "@nrwl/web:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "nivo:build",
+        "buildTarget": "echarts:build",
         "hmr": true
       },
       "configurations": {
         "development": {
-          "buildTarget": "nivo:build:development"
+          "buildTarget": "echarts:build:development"
         },
         "production": {
-          "buildTarget": "nivo:build:production",
+          "buildTarget": "echarts:build:production",
           "hmr": false
         }
       }
@@ -64,14 +64,14 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/nivo/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/echarts/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/nivo"],
+      "outputs": ["coverage/apps/echarts"],
       "options": {
-        "jestConfig": "apps/nivo/jest.config.js",
+        "jestConfig": "apps/echarts/jest.config.js",
         "passWithNoTests": true
       }
     }

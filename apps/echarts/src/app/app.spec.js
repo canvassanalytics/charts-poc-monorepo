@@ -16,6 +16,6 @@ describe('App', () => {
         <App />
       </BrowserRouter>
     );
-    expect(getByText(/Welcome nivo/gi)).toBeTruthy();
+    expect(getByText(/Welcome echarts/gi)).toBeTruthy();
   });
 });
