@@ -1,5 +1,6 @@
 import { Route, Routes, NavLink } from 'react-router-dom';
 import styled from 'styled-components/macro';
+import BarPlot from './components/BarPlot';
 
 import LinePlot from './components/LinePlot';
 import SactterPlot from './components/ScatterPlot';
@@ -46,6 +47,9 @@ export function App() {
           <NavItem>
             <Link to="/scatter">Scatter Plot</Link>
           </NavItem>
+          <NavItem>
+            <Link to="/bar">Bar Plot</Link>
+          </NavItem>
         </NavList>
       </NavBar>
       <Routes>
@@ -60,6 +64,10 @@ export function App() {
         <Route
           path="/scatter"
           element={<SactterPlot />}
+        />
+        <Route
+          path="/bar"
+          element={<BarPlot />}
         />
       </Routes>
     </StyledApp>
