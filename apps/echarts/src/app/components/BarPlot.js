@@ -1,22 +1,22 @@
 import React, { useMemo, useState } from 'react';
 
-import { generateScatterplotsData } from '@charts-poc-mono/data-utils';
+import { generateBarData } from '@charts-poc-mono/data-utils';
 import EChart from './EChart';
 import { Wrapper, Title, ControlBar } from './common/CommonComponents';
 import { NumericInput } from './common/Inputs';
 
 
-const SactterPlot = () => {
-    const [numberOfPoints, setNumberOfPoints] = useState(100);
+const BarPlot = () => {
+    const [numberOfBars, setNumberOfBars] = useState(5);
 
-    const generatedData = useMemo(() => generateScatterplotsData(numberOfPoints), [numberOfPoints]);
+    const generatedData = useMemo(() => generateBarData(numberOfBars), [numberOfBars]);
     const data = useMemo(() => formatData(generatedData), [generatedData]);
 
     const options = {
         grid: { top: 8, right: 8, bottom: 24, left: 36 },
         xAxis: {
-            type: 'value',
-            boundaryGap: false,
+            type: 'category',
+            boundaryGap: true,
         },
         yAxis: {
           type: 'value',
@@ -28,7 +28,7 @@ const SactterPlot = () => {
         ],
         series: [
           {
-            type: 'scatter',
+            type: 'bar',
             large: true,
             data,
           },
@@ -41,12 +41,12 @@ const SactterPlot = () => {
 
     return (
         <>
-            <Title>Scatter Plot</Title>
+            <Title>Bar Plot</Title>
             <ControlBar>
                 <NumericInput
-                    label="Number of Points"
-                    value={numberOfPoints}
-                    setValue={setNumberOfPoints}
+                    label="Number of Bars"
+                    value={numberOfBars}
+                    setValue={setNumberOfBars}
                 />
             </ControlBar>
             <Wrapper>
@@ -61,4 +61,4 @@ function formatData(data) {
     return data.map(entry => [entry.x, entry.y]);
 };
 
-export default SactterPlot;
+export default BarPlot;
