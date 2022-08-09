@@ -9,7 +9,6 @@ import { NumericInput } from './common/Inputs';
 const SactterPlot = () => {
     const [numberOfPoints, setNumberOfPoints] = useState(100);
 
-
     const generatedData = useMemo(() => generateScatterplotsData(numberOfPoints), [numberOfPoints]);
     const data = useMemo(() => formatData(generatedData), [generatedData]);
 
@@ -22,6 +21,11 @@ const SactterPlot = () => {
         yAxis: {
           type: 'value',
         },
+        dataZoom: [
+            {
+                type: 'inside'
+            },
+        ],
         series: [
           {
             type: 'scatter',
@@ -32,13 +36,18 @@ const SactterPlot = () => {
         tooltip: {
           trigger: 'axis',
         },
+        animationDuration: 500,
       };
 
     return (
         <>
             <Title>Scatter Plot</Title>
             <ControlBar>
-                <NumericInput label="Number of Points" value={numberOfPoints} setValue={setNumberOfPoints}/>
+                <NumericInput
+                    label="Number of Points"
+                    value={numberOfPoints}
+                    setValue={setNumberOfPoints}
+                />
             </ControlBar>
             <Wrapper>
                 <EChart options={options}/>

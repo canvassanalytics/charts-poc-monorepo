@@ -1,4 +1,4 @@
-import { Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes, NavLink } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
 import LinePlot from './components/LinePlot';
@@ -15,12 +15,16 @@ const NavList = styled.ul`
 const NavItem = styled.li`
   float: left;
 `;
-const NavLink = styled(Link)`
+const Link = styled(NavLink)`
   display: block;
   color: grey;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  &.active {
+    color: black;
+    font-weight: 600;
+  }
 
   &:hover {
     color: black;
@@ -34,13 +38,13 @@ export function App() {
       <NavBar role="navigation">
         <NavList>
           <NavItem>
-            <NavLink to="/">Home</NavLink>
+            <Link to="/">Home</Link>
           </NavItem>
           <NavItem>
-            <NavLink to="/line">Line Plot</NavLink>
+            <Link to="/line">Line Plot</Link>
           </NavItem>
           <NavItem>
-            <NavLink to="/scatter">Scatter Plot</NavLink>
+            <Link to="/scatter">Scatter Plot</Link>
           </NavItem>
         </NavList>
       </NavBar>

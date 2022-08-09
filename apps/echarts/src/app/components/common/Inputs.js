@@ -3,7 +3,12 @@ import styled from 'styled-components/macro';
 
 
 export const NumericInput = ({label, value, setValue}) => {
-    // const [intermediateValue, setIntermediateValue] = useState(value);
+    const [intermediateValue, setIntermediateValue] = useState(value);
+    const handleEnter = (event) => {
+        if (event.key === 'Enter') {
+            setValue(event.target.value)
+        }
+    }
     return (
         <div>
             <Label>{label}</Label>
@@ -11,9 +16,10 @@ export const NumericInput = ({label, value, setValue}) => {
                 autoComplete="off"
                 name={label}
                 type="number"
-                onChange={event => setValue(event.target.value)}
+                onChange={event => setIntermediateValue(event.target.value)}
                 onBlur={event => setValue(event.target.value)}
-                value={value}
+                onKeyDown={handleEnter}
+                value={intermediateValue}
             />
         </div>
     );
