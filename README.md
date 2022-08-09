@@ -1,24 +1,13 @@
-
-
 # Charts POC Monorepo
 
 This project was generated using [Nx](https://nx.dev).
 
+## Deployed apps
 
-
-## [Nivo](https://nivo.rocks/)
-
-By default nx generates react app using react `v18`. Nivo only work with react <`v18`.
-
-Installed dependencies with `--legacy-peer-deps` flag:
-
-```
-npm i @nivo/core @nivo/line --legacy-peer-deps
-```
-
-
-
-
+- https://echarts-canvass-poc.netlify.app
+- https://plotly-canvass-poc.netlify.app (pending)
+- https://apex-canvass-poc.netlify.app (pending)
+- https://uplot-canvass-poc.netlify.app (pending)
 
 ## Generate a new app
 
@@ -31,8 +20,6 @@ nx generate @nrwl/react:app APP-NAME --js
 Install local dependacies into the new app by adding a `package.json` to the app's folder
 and installing packages within the new app's folder
 
-
-
 ## Remove an app
 
 To remove an app
@@ -41,9 +28,11 @@ To remove an app
 nx generate remove APP-NAME
 ```
 
+---
 
+## Auto generated docs below
 
-
+---
 
 ## Adding capabilities to your workspace
 
@@ -115,8 +104,6 @@ Run `nx graph` to see a diagram of the dependencies of your projects.
 ## Further help
 
 Visit the [Nx Documentation](https://nx.dev) to learn more.
-
-
 
 ## ☁ Nx Cloud
 
