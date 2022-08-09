@@ -1,15 +1,15 @@
 import React from 'react';
 // import styled from 'styled-components';
-import { Navbar } from '../components';
+import { Navbar } from '../components/navbar/navbar';
 import './app.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import LineChart from '../pages/line-chart';
-import AreaChart from '../pages/area-chart';
-import ScatterPlot from '../pages/scatter-plot';
-import BarCategory from '../pages/bar-category';
-import BarNumeric from '../pages/bar-numeric';
-import ComboChart from '../pages/combo-chart';
-import StackedChart from '../pages/stacked-chart';
+import LineChart from '../components/charts/line-chart';
+import AreaChart from '../components/charts/area-chart';
+import ScatterPlot from '../components/charts/scatter-plot';
+import BarCategory from '../components/charts/bar-category';
+import BarNumeric from '../components/charts/bar-numeric';
+import ComboChart from '../components/charts/combo-chart';
+import StackedChart from '../components/charts/stacked-chart';
 
 // const StyledApp = styled.div`
 //   // Your style here
