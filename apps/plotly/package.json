@@ -1,0 +1,16 @@
+{
+  "name": "plotly",
+  "version": "1.0.0",
+  "description": "Plotly POC app",
+  "scripts": {
+    "start": "nx serve",
+    "build": "nx build",
+    "test": "nx test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "plotly.js": "^2.13.3",
+    "react-plotly.js": "^2.5.1"
+  }
+}
