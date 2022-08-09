@@ -1,6 +1,7 @@
 import { Route, Routes, NavLink } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import BarPlot from './components/BarPlot';
+import HistogramPlot from './components/HistogramPlot';
 
 import LinePlot from './components/LinePlot';
 import SactterPlot from './components/ScatterPlot';
@@ -50,6 +51,9 @@ export function App() {
           <NavItem>
             <Link to="/bar">Bar Plot</Link>
           </NavItem>
+          <NavItem>
+            <Link to="/histogram">Histogram Plot</Link>
+          </NavItem>
         </NavList>
       </NavBar>
       <Routes>
@@ -68,6 +72,10 @@ export function App() {
         <Route
           path="/bar"
           element={<BarPlot />}
+        />
+        <Route
+          path="/histogram"
+          element={<HistogramPlot />}
         />
       </Routes>
     </StyledApp>
