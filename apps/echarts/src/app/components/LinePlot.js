@@ -24,6 +24,11 @@ const LinePlot = () => {
         yAxis: {
           type: 'value',
         },
+        dataZoom: [
+            {
+                type: 'inside'
+            },
+        ],
         series: [
           {
             type: 'line',
@@ -41,7 +46,11 @@ const LinePlot = () => {
         <>
             <Title>Line Plot</Title>
             <ControlBar>
-                <NumericInput label="Number of Points" value={numberOfPoints} setValue={setNumberOfPoints}/>
+                <NumericInput
+                    label="Number of Points"
+                    value={numberOfPoints}
+                    setValue={setNumberOfPoints}
+                />
                 <Toggle label="Show Points" isOn={showPoints} setIsOn={setShowPoints}/>
                 <Toggle label="Downsample Data" isOn={downsample} setIsOn={setDownsample}/>
             </ControlBar>
