@@ -1,5 +1,6 @@
 import { Route, Routes, NavLink } from 'react-router-dom';
 import styled from 'styled-components/macro';
+import AreaPlot from './components/AreaPlot';
 import BarPlot from './components/BarPlot';
 import HistogramPlot from './components/HistogramPlot';
 
@@ -46,6 +47,9 @@ export function App() {
             <Link to="/line">Line Plot</Link>
           </NavItem>
           <NavItem>
+            <Link to="/area">Area Plot</Link>
+          </NavItem>
+          <NavItem>
             <Link to="/scatter">Scatter Plot</Link>
           </NavItem>
           <NavItem>
@@ -64,6 +68,10 @@ export function App() {
         <Route
           path="/line"
           element={<LinePlot />}
+        />
+        <Route
+          path="/area"
+          element={<AreaPlot />}
         />
         <Route
           path="/scatter"
