@@ -2,6 +2,7 @@ import { Route, Routes, Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
 import LinePlot from './components/LinePlot';
+import SactterPlot from './components/ScatterPlot';
 
 const StyledApp = styled.div``;
 const NavBar = styled.div``;
@@ -28,12 +29,8 @@ const NavLink = styled(Link)`
 `;
 
 export function App() {
-  // const data = generateTimeseriesData(10);
   return (
     <StyledApp>
-      {/* <div>
-        {data.map(datum => <p>x: {datum.x} y: {datum.y}</p>)}
-      </div> */}
       <NavBar role="navigation">
         <NavList>
           <NavItem>
@@ -42,9 +39,11 @@ export function App() {
           <NavItem>
             <NavLink to="/line">Line Plot</NavLink>
           </NavItem>
+          <NavItem>
+            <NavLink to="/scatter">Scatter Plot</NavLink>
+          </NavItem>
         </NavList>
       </NavBar>
-      <br />
       <Routes>
         <Route
           path="/"
@@ -54,8 +53,11 @@ export function App() {
           path="/line"
           element={<LinePlot />}
         />
+        <Route
+          path="/scatter"
+          element={<SactterPlot />}
+        />
       </Routes>
-      {/* END: routes */}
     </StyledApp>
   );
 }
