@@ -2,6 +2,8 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
+    "apex-charts": "apps/apex-charts",
+    "apex-charts-e2e": "apps/apex-charts-e2e",
     "echarts": "apps/echarts",
     "echarts-e2e": "apps/echarts-e2e"
   }
