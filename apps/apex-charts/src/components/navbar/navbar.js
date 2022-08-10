@@ -2,18 +2,12 @@ import React, { useState } from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import { SidebarData } from '../../utils/side-bar-data';
+import { NavbarData } from '../../utils/navbar-data';
 import './Navbar.css';
 import { IconContext } from 'react-icons';
-import styled from 'styled-components';
-
-// const StyledNavbar = styled.div`
-//   color: pink;
-// `;
 
 export function Navbar(props) {
   const [sidebar, setSidebar] = useState(false);
-
   const showSidebar = () => setSidebar(!sidebar);
 
   return (
@@ -31,7 +25,7 @@ export function Navbar(props) {
               <AiIcons.AiOutlineClose />
             </Link>
           </li>
-          {SidebarData.map((item, index) => {
+          {NavbarData.map((item, index) => {
             return (
               <li key={index} className={item.cName}>
                 <Link to={item.path}>

@@ -1,6 +1,5 @@
 import React from 'react';
-// import styled from 'styled-components';
-import { Navbar } from '../components/navbar/navbar';
+import Navbar from '../components/navbar/navbar';
 import './app.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LineChart from '../components/charts/line-chart';
@@ -10,10 +9,6 @@ import BarCategory from '../components/charts/bar-category';
 import BarNumeric from '../components/charts/bar-numeric';
 import ComboChart from '../components/charts/combo-chart';
 import StackedChart from '../components/charts/stacked-chart';
-
-// const StyledApp = styled.div`
-//   // Your style here
-// `;
 
 export function App() {
   return (

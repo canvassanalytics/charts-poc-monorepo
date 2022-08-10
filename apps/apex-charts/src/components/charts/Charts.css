@@ -1,0 +1,19 @@
+
+.wrapper {
+    margin: auto 300px;
+    width: 100%;
+    height: 600px;
+    /* resize: both; */
+    overflow: auto;
+    left: 300;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    padding-top: 16px;
+}
+
+
