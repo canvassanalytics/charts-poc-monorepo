@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React from 'react';
 
 import { generateBarData } from '@charts-poc-mono/data-utils';
 import EChart from './EChart';
@@ -7,10 +7,13 @@ import { NumericInput } from './common/Inputs';
 
 
 const BarPlot = () => {
-    const [numberOfBars, setNumberOfBars] = useState(5);
+    // const [numberOfBars, setNumberOfBars] = useState(5);
 
-    const generatedData = useMemo(() => generateBarData(numberOfBars), [numberOfBars]);
-    const data = useMemo(() => formatData(generatedData), [generatedData]);
+    // const generatedData = useMemo(() => generateBarData(numberOfBars), [numberOfBars]);
+    // const data = useMemo(() => formatData(generatedData), [generatedData]);
+    const generatedData = generateBarData(10);
+    const data = formatData(generatedData);
+    console.log(data)
 
     const options = {
         grid: { top: 8, right: 8, bottom: 24, left: 36 },
@@ -42,13 +45,13 @@ const BarPlot = () => {
     return (
         <>
             <Title>Bar Plot</Title>
-            <ControlBar>
+            {/* <ControlBar>
                 <NumericInput
                     label="Number of Bars"
                     value={numberOfBars}
                     setValue={setNumberOfBars}
                 />
-            </ControlBar>
+            </ControlBar> */}
             <Wrapper>
                 <EChart options={options}/>
             </Wrapper>
