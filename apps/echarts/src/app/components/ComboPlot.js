@@ -16,9 +16,8 @@ const ComboPlot = () => {
     const generatedData = useMemo(() => generateTimeseriesData(numberOfPoints, 60, false), [numberOfPoints]);
     const data = useMemo(() => formatData(generatedData), [generatedData]);
 
-    const generatedBarData = useMemo(() => generateTimeseriesData(numberOfPoints, 120, false), [numberOfPoints]);
+    const generatedBarData = useMemo(() => generateTimeseriesData(Math.floor(numberOfPoints/2), 120, false), [numberOfPoints]);
     const barData = useMemo(() => formatData(generatedBarData), [generatedBarData]);
-    console.log(barData, data)
 
     const options = {
         grid: { top: 8, right: 8, bottom: 24, left: 36 },
