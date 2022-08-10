@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 
 import { generateTimeseriesData } from '@charts-poc-mono/data-utils';
-import EChart from './EChart';
+import EChart from './echart/EChart';
 import { Wrapper, Title, ControlBar } from './common/CommonComponents';
 import { NumericInput, Toggle } from './common/Inputs';
 
