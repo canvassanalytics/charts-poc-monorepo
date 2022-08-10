@@ -33,7 +33,7 @@ const Input = styled.input`
 `;
 
 export const Toggle = ({ label, isOn, setIsOn }) => (
-  <Switch class="switch">
+  <Switch>
     {label}
     <input type="checkbox" checked={isOn} onChange={() => setIsOn(!isOn)} />
   </Switch>
