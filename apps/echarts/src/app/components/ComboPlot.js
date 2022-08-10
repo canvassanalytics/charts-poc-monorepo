@@ -5,27 +5,26 @@ import EChart from './echart/EChart';
 import { Wrapper, Title, ControlBar } from './common/CommonComponents';
 import { NumericInput, Toggle } from './common/Inputs';
 
-const AreaPlot = () => {
+const ComboPlot = () => {
   const [numberOfPoints, setNumberOfPoints] = useState(100);
   const [showPoints, setShowPoints] = useState(false);
   const [downsample, setDownsample] = useState(false);
-  const [includeNegatives, setIncludeNegatives] = useState(false);
-  const [showMultiple, setShowMultiple] = useState(false);
+  const [isBarOntop, setIsBarOntop] = useState(false);
 
   const generatedData = useMemo(
-    () => generateTimeseriesData(numberOfPoints, 60, includeNegatives),
-    [numberOfPoints, includeNegatives]
+    () => generateTimeseriesData(numberOfPoints, 60, false),
+    [numberOfPoints]
   );
   const data = useMemo(() => formatData(generatedData), [generatedData]);
 
-  const generateNewData = () => {
-    const newData = generateTimeseriesData(
-      Math.floor(numberOfPoints / 2),
-      120,
-      includeNegatives
-    );
-    return formatData(newData);
-  };
+  const generatedBarData = useMemo(
+    () => generateTimeseriesData(Math.floor(numberOfPoints / 2), 120, false),
+    [numberOfPoints]
+  );
+  const barData = useMemo(
+    () => formatData(generatedBarData),
+    [generatedBarData]
+  );
 
   const options = {
     grid: { top: 8, right: 8, bottom: 24, left: 36 },
@@ -43,6 +42,12 @@ const AreaPlot = () => {
     ],
     series: [
       {
+        type: 'bar',
+        large: true,
+        z: isBarOntop ? 5 : 2,
+        data: barData,
+      },
+      {
         type: 'line',
         showSymbol: showPoints,
         sampling: downsample ? 'lttb' : null,
@@ -55,19 +60,9 @@ const AreaPlot = () => {
     },
   };
 
-  if (showMultiple) {
-    options.series.push({
-      type: 'line',
-      showSymbol: showPoints,
-      sampling: downsample ? 'lttb' : null,
-      areaStyle: {},
-      data: generateNewData(),
-    });
-  }
-
   return (
     <>
-      <Title>Area Plot</Title>
+      <Title>Combo Plot</Title>
       <ControlBar>
         <NumericInput
           label="Number of Points"
@@ -81,14 +76,9 @@ const AreaPlot = () => {
           setIsOn={setDownsample}
         />
         <Toggle
-          label="Include Negatives"
-          isOn={includeNegatives}
-          setIsOn={setIncludeNegatives}
-        />
-        <Toggle
-          label="Multiple Series"
-          isOn={showMultiple}
-          setIsOn={setShowMultiple}
+          label="Show Bars Ontop"
+          isOn={isBarOntop}
+          setIsOn={setIsBarOntop}
         />
       </ControlBar>
       <Wrapper>
@@ -103,4 +93,4 @@ function formatData(data) {
   return data.map((entry) => [entry.x, entry.y]);
 }
 
-export default AreaPlot;
+export default ComboPlot;

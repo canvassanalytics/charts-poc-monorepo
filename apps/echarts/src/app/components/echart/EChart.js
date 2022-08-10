@@ -67,36 +67,46 @@ import {
   // SVGRenderer,
 } from 'echarts/renderers';
 
-// Register the required components
-echarts.use(
-  [
-    LineChart, ScatterChart, ToolboxComponent, MarkPointComponent, MarkLineComponent,
-    MarkAreaComponent, LegendComponent, DataZoomComponent, DataZoomInsideComponent,
-    DataZoomSliderComponent,  DatasetComponent, TitleComponent, TooltipComponent,
-    GridComponent, BarChart, CanvasRenderer
-  ]
-);
+import lightTheme from './themes';
 
-echarts.registerTheme('light', {
-    backgroundColor: 'hsla(252, 100%, 99%, 0.3)'
-})
+// Register the required components
+echarts.use([
+  LineChart,
+  ScatterChart,
+  ToolboxComponent,
+  MarkPointComponent,
+  MarkLineComponent,
+  MarkAreaComponent,
+  LegendComponent,
+  DataZoomComponent,
+  DataZoomInsideComponent,
+  DataZoomSliderComponent,
+  DatasetComponent,
+  TitleComponent,
+  TooltipComponent,
+  GridComponent,
+  BarChart,
+  CanvasRenderer,
+]);
+
+echarts.registerTheme('light', lightTheme);
 echarts.registerTheme('dark', {
-    backgroundColor: 'grey'
-})
+  backgroundColor: 'grey',
+});
 
 const EChart = ({ options, theme = 'light' }) => (
-    // The usage of ReactEChartsCore are same with above.
-    <ReactEChartsCore
-        echarts={echarts}
-        option={options}
-        notMerge={true}
-        lazyUpdate={true}
-        theme={theme}
-        style={{height: '100%', width: '100%'}}
-        // onChartReady={onReady}
-        // onEvents={events}
-        // opts={opts}
-    />
+  // The usage of ReactEChartsCore are same with above.
+  <ReactEChartsCore
+    echarts={echarts}
+    option={options}
+    notMerge={true}
+    lazyUpdate={true}
+    theme={theme}
+    style={{ height: '100%', width: '100%' }}
+    // onChartReady={onReady}
+    // onEvents={events}
+    // opts={opts}
+  />
 );
 
 export default EChart;
