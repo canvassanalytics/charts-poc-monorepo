@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState, useMemo } from 'react';
 
 import { generateBarData } from '@charts-poc-mono/data-utils';
 import EChart from './EChart';
