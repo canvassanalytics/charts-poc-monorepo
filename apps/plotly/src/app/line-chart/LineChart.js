@@ -5,10 +5,22 @@ import { generateTimeseriesData } from '@charts-poc-mono/data-utils';
 import Plot from '../plotting';
 
 export default function LineChart(props) {
-  const [isShowRangeSlider] = useState(true);
+  const [isShowRangeSlider, setIsShowRangeSlider] = useState(false);
 
   return (
     <div>
+      <label htmlFor="show-range-slider">
+        <input
+          type="checkbox"
+          id="show-range-slider"
+          checked={isShowRangeSlider}
+          onChange={() => {
+            setIsShowRangeSlider(!isShowRangeSlider);
+          }}
+        />
+        Show range slider
+      </label>
+
       <Plot
         data={[
           {
