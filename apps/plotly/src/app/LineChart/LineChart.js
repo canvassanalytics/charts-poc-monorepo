@@ -1,12 +1,27 @@
-import styled from 'styled-components';
-const StyledLineChart = styled.div`
-  color: pink;
-`;
-export function LineChart(props) {
+import Plot from '../plotting';
+
+export default function LineChart(props) {
   return (
-    <StyledLineChart>
-      <h1>Welcome to LineChart!</h1>
-    </StyledLineChart>
+    <Plot
+      data={[
+        {
+          type: 'scatter',
+          mode: 'lines+points',
+          x: [1, 2, 3],
+          y: [2, 6, 3],
+          marker: { color: 'red' },
+        },
+        {
+          type: 'bar',
+          x: [1, 2, 3],
+          y: [2, 5, 3],
+        },
+      ]}
+      layout={{
+        width: 640,
+        height: 480,
+        title: 'A Fancy Plot',
+      }}
+    />
   );
 }
-export default LineChart;

@@ -1,15 +1,14 @@
-import styled from 'styled-components';
-import NxWelcome from './nx-welcome';
-
 import { Route, Routes, Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+import LineChart from './LineChart/LineChart';
+
 const StyledApp = styled.div`
   // Your style here
 `;
 export function App() {
   return (
     <StyledApp>
-      <NxWelcome title="plotly" />
-
       {/* START: routes */}
       {/* These routes and navigation have been generated for you */}
       {/* Feel free to move and update them to fit your needs */}
@@ -24,8 +23,12 @@ export function App() {
           <li>
             <Link to="/page-2">Page 2</Link>
           </li>
+          <li>
+            <Link to="/line-chart">Line Chart</Link>
+          </li>
         </ul>
       </div>
+
       <Routes>
         <Route
           path="/"
@@ -44,6 +47,7 @@ export function App() {
             </div>
           }
         />
+        <Route path="/line-chart" element={<LineChart />} />
       </Routes>
       {/* END: routes */}
     </StyledApp>
