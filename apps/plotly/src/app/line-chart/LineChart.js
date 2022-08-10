@@ -1,12 +1,10 @@
-import Plot from '../plotting';
-
 import { generateTimeseriesData } from '@charts-poc-mono/data-utils';
+
+import Plot from '../plotting';
 
 export default function LineChart(props) {
   return (
     <Plot
-      useResizeHandler
-      style={{ width: '100%', height: '100%' }}
       data={[
         {
           type: 'scatter',
@@ -17,12 +15,10 @@ export default function LineChart(props) {
         },
       ]}
       layout={{
-        width: 640,
-        height: 480,
         title: 'Line plot',
       }}
       config={{
-        responsive: true,
+        scrollZoom: true,
       }}
     />
   );
