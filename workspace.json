@@ -10,8 +10,6 @@
       "root": "libs/data-utils",
       "sourceRoot": "libs/data-utils/src",
       "projectType": "library"
-    },
-    "plotly": "apps/plotly",
-    "plotly-e2e": "apps/plotly-e2e"
+    }
   }
 }
