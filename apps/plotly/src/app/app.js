@@ -1,7 +1,8 @@
 import { Route, Routes, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import LineChart from './LineChart/LineChart';
+import Home from './home/Home';
+import LineChart from './line-chart/LineChart';
 
 const StyledApp = styled.div`
   // Your style here
@@ -21,32 +22,13 @@ export function App() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/page-2">Page 2</Link>
-          </li>
-          <li>
             <Link to="/line-chart">Line Chart</Link>
           </li>
         </ul>
       </div>
 
       <Routes>
-        <Route
-          path="/"
-          element={
-            <div>
-              This is the generated root route.{' '}
-              <Link to="/page-2">Click here for page 2.</Link>
-            </div>
-          }
-        />
-        <Route
-          path="/page-2"
-          element={
-            <div>
-              <Link to="/">Click here to go back to root page.</Link>
-            </div>
-          }
-        />
+        <Route path="/" element={<Home />} />
         <Route path="/line-chart" element={<LineChart />} />
       </Routes>
       {/* END: routes */}
