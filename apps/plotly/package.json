@@ -2,13 +2,6 @@
   "name": "plotly",
   "version": "1.0.0",
   "description": "Plotly POC app",
-  "scripts": {
-    "start": "nx serve",
-    "build": "nx build",
-    "test": "nx test"
-  },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "assert": "^2.0.0",
     "plotly.js-cartesian-dist-min": "^2.13.3",
