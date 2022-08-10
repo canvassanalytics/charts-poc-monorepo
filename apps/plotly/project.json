@@ -18,7 +18,7 @@
         "assets": ["apps/plotly/src/favicon.ico", "apps/plotly/src/assets"],
         "styles": [],
         "scripts": [],
-        "webpackConfig": "@nrwl/react/plugins/webpack"
+        "webpackConfig": "apps/plotly/custom-webpack.config.js"
       },
       "configurations": {
         "development": {
