@@ -11,10 +11,16 @@ const AreaPlot = () => {
     const [showPoints, setShowPoints] = useState(false);
     const [downsample, setDownsample] = useState(false);
     const [includeNegatives, setIncludeNegatives] = useState(false);
+    const [showMultiple, setShowMultiple] = useState(false);
 
 
     const generatedData = useMemo(() => generateTimeseriesData(numberOfPoints, 60, includeNegatives), [numberOfPoints, includeNegatives]);
     const data = useMemo(() => formatData(generatedData), [generatedData]);
+
+    const generateNewData = () => {
+        const newData = generateTimeseriesData(Math.floor(numberOfPoints/2), 120, includeNegatives);
+        return formatData(newData);
+    }
 
     const options = {
         grid: { top: 8, right: 8, bottom: 24, left: 36 },
@@ -44,6 +50,16 @@ const AreaPlot = () => {
         },
       };
 
+    if (showMultiple) {
+        options.series.push({
+            type: 'line',
+            showSymbol: showPoints,
+            sampling: downsample ? 'lttb': null,
+            areaStyle: {},
+            data: generateNewData(),
+        })
+    }
+
     return (
         <>
             <Title>Area Plot</Title>
@@ -56,6 +72,7 @@ const AreaPlot = () => {
                 <Toggle label="Show Points" isOn={showPoints} setIsOn={setShowPoints}/>
                 <Toggle label="Downsample Data" isOn={downsample} setIsOn={setDownsample}/>
                 <Toggle label="Include Negatives" isOn={includeNegatives} setIsOn={setIncludeNegatives}/>
+                <Toggle label="Multiple Series" isOn={showMultiple} setIsOn={setShowMultiple}/>
             </ControlBar>
             <Wrapper>
                 <EChart options={options}/>

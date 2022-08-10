@@ -3,14 +3,20 @@ import React, { useMemo, useState } from 'react';
 import { generateScatterplotsData } from '@charts-poc-mono/data-utils';
 import EChart from './EChart';
 import { Wrapper, Title, ControlBar } from './common/CommonComponents';
-import { NumericInput } from './common/Inputs';
+import { NumericInput, Toggle } from './common/Inputs';
 
 
 const SactterPlot = () => {
     const [numberOfPoints, setNumberOfPoints] = useState(100);
+    const [showMultiple, setShowMultiple] = useState(false);
 
     const generatedData = useMemo(() => generateScatterplotsData(numberOfPoints), [numberOfPoints]);
     const data = useMemo(() => formatData(generatedData), [generatedData]);
+
+    const generateNewData = () => {
+        const newData = generateScatterplotsData(numberOfPoints);
+        return formatData(newData);
+    }
 
     const options = {
         grid: { top: 8, right: 8, bottom: 24, left: 36 },
@@ -39,6 +45,15 @@ const SactterPlot = () => {
         animationDuration: 500,
       };
 
+    if (showMultiple) {
+        options.series.push({
+            type: 'scatter',
+            large: true,
+            data: generateNewData(),
+        })
+    }
+
+
     return (
         <>
             <Title>Scatter Plot</Title>
@@ -48,6 +63,7 @@ const SactterPlot = () => {
                     value={numberOfPoints}
                     setValue={setNumberOfPoints}
                 />
+                <Toggle label="Multiple Series" isOn={showMultiple} setIsOn={setShowMultiple}/>
             </ControlBar>
             <Wrapper>
                 <EChart options={options}/>

@@ -88,7 +88,6 @@ export function generateHistogramData(numberOfBins = 100) {
       y: Math.abs(((Math.sin(i / 5) * (i / 5 - 10) + i / 6) * 5).toFixed(0))
     });
   }
-  console.log(data)
 
   return data;
 }
