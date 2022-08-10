@@ -66,34 +66,13 @@ export function App() {
         </NavList>
       </NavBar>
       <Routes>
-        <Route
-          path="/"
-          element={<HomePage />}
-        />
-        <Route
-          path="/line"
-          element={<LinePlot />}
-        />
-        <Route
-          path="/area"
-          element={<AreaPlot />}
-        />
-        <Route
-          path="/scatter"
-          element={<SactterPlot />}
-        />
-        <Route
-          path="/bar"
-          element={<BarPlot />}
-        />
-        <Route
-          path="/histogram"
-          element={<HistogramPlot />}
-        />
-        <Route
-          path="/combo"
-          element={<ComboPlot />}
-        />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/line" element={<LinePlot />} />
+        <Route path="/area" element={<AreaPlot />} />
+        <Route path="/scatter" element={<SactterPlot />} />
+        <Route path="/bar" element={<BarPlot />} />
+        <Route path="/histogram" element={<HistogramPlot />} />
+        <Route path="/combo" element={<ComboPlot />} />
       </Routes>
     </StyledApp>
   );
