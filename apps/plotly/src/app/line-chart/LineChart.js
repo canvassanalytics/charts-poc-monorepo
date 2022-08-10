@@ -1,26 +1,35 @@
+import { useState } from 'react';
+
 import { generateTimeseriesData } from '@charts-poc-mono/data-utils';
 
 import Plot from '../plotting';
 
 export default function LineChart(props) {
+  const [isShowRangeSlider] = useState(true);
+
   return (
-    <Plot
-      data={[
-        {
-          type: 'scatter',
-          mode: 'lines+points',
-          x: xArray,
-          y: yArray,
-          marker: { color: 'red' },
-        },
-      ]}
-      layout={{
-        title: 'Line plot',
-      }}
-      config={{
-        scrollZoom: true,
-      }}
-    />
+    <div>
+      <Plot
+        data={[
+          {
+            type: 'scatter',
+            mode: 'lines+points',
+            x: xArray,
+            y: yArray,
+            marker: { color: 'red' },
+          },
+        ]}
+        layout={{
+          title: 'Line plot',
+          xaxis: {
+            rangeslider: { visible: isShowRangeSlider },
+          },
+        }}
+        config={{
+          scrollZoom: true,
+        }}
+      />
+    </div>
   );
 }
 
