@@ -78,7 +78,8 @@ echarts.use(
 );
 
 echarts.registerTheme('light', {
-    backgroundColor: 'hsla(252, 100%, 99%, 0.3)'
+    backgroundColor: 'hsla(252, 100%, 99%, 0.3)',
+    border: '0.990315px solid #E5E5EB'
 })
 echarts.registerTheme('dark', {
     backgroundColor: 'grey'

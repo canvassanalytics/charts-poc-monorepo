@@ -2,7 +2,9 @@ import { Route, Routes, NavLink } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import AreaPlot from './components/AreaPlot';
 import BarPlot from './components/BarPlot';
+import ComboPlot from './components/ComboPlot';
 import HistogramPlot from './components/HistogramPlot';
+import HomePage from './components/HomePage';
 
 import LinePlot from './components/LinePlot';
 import SactterPlot from './components/ScatterPlot';
@@ -58,15 +60,19 @@ export function App() {
           <NavItem>
             <Link to="/histogram">Histogram Plot</Link>
           </NavItem>
+          <NavItem>
+            <Link to="/combo">Combo Plot</Link>
+          </NavItem>
         </NavList>
       </NavBar>
       <Routes>
-        <Route path="/" element={<h1>ECharts POC</h1>} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/line" element={<LinePlot />} />
         <Route path="/area" element={<AreaPlot />} />
         <Route path="/scatter" element={<SactterPlot />} />
         <Route path="/bar" element={<BarPlot />} />
         <Route path="/histogram" element={<HistogramPlot />} />
+        <Route path="/combo" element={<ComboPlot />} />
       </Routes>
     </StyledApp>
   );
