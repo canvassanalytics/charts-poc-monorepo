@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Home from './home/Home';
 import LineChart from './line-chart/LineChart';
+import BarChart from './bar-chart/BarChart';
 
 const StyledApp = styled.div`
   // Your style here
@@ -20,11 +21,15 @@ export default function App() {
         <li>
           <Link to="/line-chart">Line Chart</Link>
         </li>
+        <li>
+          <Link to="/bar-chart">Bar Chart</Link>
+        </li>
       </Navigation>
 
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/line-chart" element={<LineChart />} />
+        <Route path="/bar-chart" element={<BarChart />} />
       </Routes>
       {/* END: routes */}
     </StyledApp>
