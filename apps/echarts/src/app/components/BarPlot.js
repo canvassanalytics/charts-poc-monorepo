@@ -37,6 +37,10 @@ const BarPlot = () => {
     ],
     tooltip: {
       trigger: 'axis',
+      axisPointer: {
+        type: 'shadow',
+      },
+      formatter: '{b}: {c}', // tooltip formatter
     },
     animationDuration: 500,
   };
@@ -60,7 +64,18 @@ const BarPlot = () => {
 
 function formatData(data) {
   if (!data) return [];
-  return data.map((entry) => [entry.x, entry.y]);
+
+  return data.map((entry, i) => {
+    if (i % 2 === 0) {
+      return {
+        value: [entry.x, entry.y],
+        itemStyle: {
+          opacity: 0.5,
+        },
+      };
+    }
+    return [entry.x, entry.y];
+  });
 }
 
 export default BarPlot;

@@ -17,7 +17,16 @@ const SactterPlot = () => {
 
   const generateNewData = () => {
     const newData = generateScatterplotsData(numberOfPoints);
-    return formatData(newData);
+    const formattedData = formatData(newData);
+    formattedData.push({
+      //styling just one point
+      value: [40, 0],
+      symbolSize: 11,
+      itemStyle: {
+        color: 'red',
+      },
+    });
+    return formattedData;
   };
 
   const options = {
@@ -37,7 +46,9 @@ const SactterPlot = () => {
     series: [
       {
         type: 'scatter',
+        name: 'Series A',
         large: true,
+        // z: 5, add z to control plot order. This however overrides emphasis
         data,
       },
     ],
@@ -50,6 +61,7 @@ const SactterPlot = () => {
   if (showMultiple) {
     options.series.push({
       type: 'scatter',
+      name: 'Series B',
       large: true,
       data: generateNewData(),
     });

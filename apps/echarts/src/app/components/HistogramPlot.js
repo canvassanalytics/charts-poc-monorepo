@@ -3,10 +3,11 @@ import React, { useMemo, useState } from 'react';
 import { generateHistogramData } from '@charts-poc-mono/data-utils';
 import EChart from './echart/EChart';
 import { Wrapper, Title, ControlBar } from './common/CommonComponents';
-import { NumericInput } from './common/Inputs';
+import { NumericInput, Toggle } from './common/Inputs';
 
 const HistogramPlot = () => {
   const [numberOfBins, setNumberOfBins] = useState(100);
+  const [showOverlay, setShowOverlay] = useState(false);
 
   const generatedData = useMemo(
     () => generateHistogramData(numberOfBins),
@@ -22,6 +23,16 @@ const HistogramPlot = () => {
     },
     yAxis: {
       type: 'value',
+    },
+    visualMap: {
+      type: 'piecewise',
+      show: false,
+      dimension: 0,
+      pieces: [
+        { max: 20, opacity: 0.5 },
+        { min: 20, max: 80, opacity: 1 },
+        { min: 80, opacity: 0.5 },
+      ],
     },
     dataZoom: [
       {
@@ -41,6 +52,16 @@ const HistogramPlot = () => {
     animationDuration: 500,
   };
 
+  if (showOverlay) {
+    options.series[0].markArea = {
+      label: { show: false },
+      data: [
+        [{ name: 'lower bound', itemStyle: { color: 'pink' } }, { xAxis: 20 }],
+        [{ name: 'uppper bound', xAxis: 80 }, { xAxis: 'max' }],
+      ],
+    };
+  }
+
   return (
     <>
       <Title>Histogram Plot</Title>
@@ -49,6 +70,11 @@ const HistogramPlot = () => {
           label="Number of Bins"
           value={numberOfBins}
           setValue={setNumberOfBins}
+        />
+        <Toggle
+          label="Show Overlays"
+          isOn={showOverlay}
+          setIsOn={setShowOverlay}
         />
       </ControlBar>
       <Wrapper>
