@@ -11,9 +11,10 @@ export function generateTimeseriesData(numberOfPoints = 1000, resolutionInSecond
 
   for (let i = 0; i < numberOfPoints; i++) {
     currentDate = new Date(currentDate.getTime() + resolutionInSeconds*1000);
+    const y = ((Math.sin(i / 5) * (i / 5 - 10) + i / 6) * 5).toFixed(2)
     data.push({
       x: currentDate.toISOString(),
-      y: (Math.sin(Math.random()) * 10 - (includeNegatives ? Math.random() * 10 : 0)).toFixed(2)
+      y: includeNegatives ? y : Math.abs(y)
     });
   }
 
@@ -21,7 +22,7 @@ export function generateTimeseriesData(numberOfPoints = 1000, resolutionInSecond
 }
 
 
-export function generateScatterplotsData(numberOfPoints = 1000, resolutionInSeconds = 60, includeNegatives = true) {
+export function generateScatterplotsData(numberOfPoints = 1000, resolutionInSeconds = 60) {
   /*
     data = [
       {timestamp: "2020-01-01T12:00:00Z", x: 12.23, y: 5.23},
@@ -37,8 +38,8 @@ export function generateScatterplotsData(numberOfPoints = 1000, resolutionInSeco
     currentDate = new Date(currentDate.getTime() + resolutionInSeconds*1000);
     x = x + (x > 50 ? -Math.random(): Math.random()) * 10;
     data.push({
-      x: x.toFixed(2),
-      y: (Math.sin(Math.random()) * 10 - (includeNegatives ? Math.random() * 10 : 0)).toFixed(2),
+      x: (Math.random(i) * numberOfPoints).toFixed(2),
+      y: (Math.sin(0.2*i) * 10).toFixed(2),
       timestamp: currentDate.toISOString()
     });
   }
@@ -59,7 +60,7 @@ export function generateBarData(numberOfBars = 5) {
 
   for (let i = 0; i < numberOfBars; i++) {
     data.push({
-      x: i.toString(),
+      x: "Category " + i,
       y: (Math.sin(Math.random()) * 10).toFixed(0)
     });
   }
@@ -80,9 +81,11 @@ export function generateHistogramData(numberOfBins = 100) {
   const data = [];
 
   for (let i = 0; i < numberOfBins; i++) {
+    const start = i;
+    const end = i + 1;
     data.push({
-      x: (i + i + 1) / 2,
-      y: (Math.sin(Math.random()) * 10).toFixed(0)
+      x: (start + end) / 2,
+      y: Math.abs(((Math.sin(i / 5) * (i / 5 - 10) + i / 6) * 5).toFixed(0))
     });
   }
 
