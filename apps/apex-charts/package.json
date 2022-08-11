@@ -9,8 +9,11 @@
     },
     "private": true,
     "dependencies": {
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "react-is": "18.2.0",
+        "react-router-dom": "6.3.0",
         "apexcharts": "^3.35.4",
-        "react-apexcharts": "^1.4.0",
-        "react": "file:../node_modules/react"
+        "react-apexcharts": "^1.4.0"
     }
 }

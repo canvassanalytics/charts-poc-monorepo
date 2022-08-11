@@ -1,6 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import Chart from 'react-apexcharts';
 import { generateTimeseriesData } from '@charts-poc-mono/data-utils';
+import { Wrapper, ControlBar } from '../shared/commonComponents';
+import { NumericInput, Toggle } from '../shared/input';
 import './Charts.css';
 
 const AreaChart = (props) => {
@@ -26,19 +28,46 @@ const AreaChart = (props) => {
     //data on the x-axis
     chart: { id: 'line-chart' },
     xaxis: {
-      categories: data,
+      type: 'datetime',
+    },
+    title: {
+      text: 'Area Chart',
+      align: 'left',
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    stroke: {
+      curve: 'smooth',
+      width: 3,
     },
   };
 
   return (
-    <div className="wrapper">
-      <h1 classname="title">Area Chart</h1>
-      <div className="App">
-        <div className="line-chart">
-          <Chart options={options} series={series} type="area" width="60%" />
-        </div>
-      </div>
-    </div>
+    <>
+      <ControlBar>
+        <NumericInput
+          label="Number of Points"
+          value={numberOfPoints}
+          setValue={setNumberOfPoints}
+        />
+        {/* <Toggle label="Show Points" isOn={showPoints} setIsOn={setShowPoints} />
+        <Toggle
+          label="Downsample Data"
+          isOn={downsample}
+          setIsOn={setDownsample}
+        /> */}
+      </ControlBar>
+      <Wrapper>
+        <Chart
+          options={options}
+          series={series}
+          type="area"
+          width="100%"
+          height="100%"
+        />
+      </Wrapper>
+    </>
   );
 };
 

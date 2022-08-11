@@ -1,6 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import Chart from 'react-apexcharts';
 import { generateHistogramData } from '@charts-poc-mono/data-utils';
+import { Wrapper, ControlBar } from '../shared/commonComponents';
+import { NumericInput, Toggle } from '../shared/input';
 import './Charts.css';
 
 const BarNumeric = (props) => {
@@ -26,22 +28,42 @@ const BarNumeric = (props) => {
     //data on the x-axis
     chart: { id: 'line-chart' },
     xaxis: {
-      categories: data,
+      categories: generatedData,
     },
     dataLabels: {
       enabled: false,
     },
+    title: {
+      text: 'Bar Chart (Numeric)',
+      align: 'left',
+    },
   };
 
   return (
-    <div className="wrapper">
-      <h1 classname="title">Bar Chart (Numeric)</h1>
-      <div className="App">
-        <div className="line-chart">
-          <Chart options={options} series={series} type="bar" width="60%" />
-        </div>
-      </div>
-    </div>
+    <>
+      <ControlBar>
+        <NumericInput
+          label="Number of Points"
+          value={numberOfPoints}
+          setValue={setNumberOfPoints}
+        />
+        {/* <Toggle label="Show Points" isOn={showPoints} setIsOn={setShowPoints} /> */}
+        {/* <Toggle
+          label="Downsample Data"
+          isOn={downsample}
+          setIsOn={setDownsample}
+        /> */}
+      </ControlBar>
+      <Wrapper>
+        <Chart
+          options={options}
+          series={series}
+          type="bar"
+          width="100%"
+          height="100%"
+        />
+      </Wrapper>
+    </>
   );
 };
 
