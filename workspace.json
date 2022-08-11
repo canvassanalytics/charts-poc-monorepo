@@ -5,6 +5,13 @@
     "echarts": "apps/echarts",
     "echarts-e2e": "apps/echarts-e2e",
     "uplot": "apps/uplot",
-    "uplot-e2e": "apps/uplot-e2e"
+    "uplot-e2e": "apps/uplot-e2e",
+    "plotly": "apps/plotly",
+    "plotly-e2e": "apps/plotly-e2e",
+    "data-utils": {
+      "root": "libs/data-utils",
+      "sourceRoot": "libs/data-utils/src",
+      "projectType": "library"
+    }
   }
 }
