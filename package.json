@@ -5,7 +5,9 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "postinstall": "(cd apps/echarts && npm install); (cd apps/plotly && npm install)"
+
   },
   "private": true,
   "dependencies": {
