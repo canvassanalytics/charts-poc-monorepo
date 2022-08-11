@@ -21,6 +21,26 @@ export function generateTimeseriesData(numberOfPoints = 1000, resolutionInSecond
   return data;
 }
 
+export function generateTimeseriesDataAxisSeparately(numberOfPoints = 1000, resolutionInSeconds = 60, includeNegatives = true, double = false) {
+  // let currentDate = new Date("2020-01-01T12:00:00Z");
+  let currentDate = Date.UTC(2010,0,1)/1000;
+  const xAxis = [];
+  const yAxis = [];
+  const yAxis2 = []; 
+
+  for (let i = 0; i < numberOfPoints; i++) {
+    currentDate += 3600 * 24;
+    // currentDate = new Date(currentDate.getTime() + resolutionInSeconds*1000);
+    const y = ((Math.sin(i / 5) * (i / 5 - 10) + i / 6) * 5).toFixed(2)
+    const y2 = ((Math.sin(i / 18) * (i / 5 - 10) + i / 9) * 5).toFixed(2)
+    xAxis.push(currentDate);
+    yAxis.push(includeNegatives ? y : Math.abs(y))
+    yAxis2.push(includeNegatives ? y2 : Math.abs(y2))
+  }
+  if(double) return [xAxis, yAxis, yAxis2]
+  return [xAxis, yAxis];
+}
+
 
 export function generateScatterplotsData(numberOfPoints = 1000, resolutionInSeconds = 60) {
   /*
