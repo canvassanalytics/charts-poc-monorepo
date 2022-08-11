@@ -1,0 +1,80 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/u-plot/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/u-plot",
+        "index": "apps/u-plot/src/index.html",
+        "baseHref": "/",
+        "main": "apps/u-plot/src/main.js",
+        "polyfills": "apps/u-plot/src/polyfills.js",
+        "tsConfig": "apps/u-plot/tsconfig.app.json",
+        "assets": ["apps/u-plot/src/favicon.ico", "apps/u-plot/src/assets"],
+        "styles": [],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/u-plot/src/environments/environment.js",
+              "with": "apps/u-plot/src/environments/environment.prod.js"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "u-plot:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "u-plot:build:development"
+        },
+        "production": {
+          "buildTarget": "u-plot:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/u-plot/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/u-plot"],
+      "options": {
+        "jestConfig": "apps/u-plot/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
