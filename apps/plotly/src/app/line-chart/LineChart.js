@@ -8,6 +8,12 @@ import Plot from '../plotting';
 export default function LineChart(props) {
   const [numberOfPoints, setNumberOfPoints] = useState(1000);
   const [isShowRangeSlider, setIsShowRangeSlider] = useState(false);
+  const [renderer, setRenderer] = useState('svg');
+
+  const rendererOptions = {
+    svg: 'scatter',
+    webgl: 'scattergl',
+  };
 
   // Prepare data for the line chart
   const rawData = generateTimeseriesData(numberOfPoints, 60, true);
@@ -43,12 +49,35 @@ export default function LineChart(props) {
           />
           Show range slider
         </label>
+
+        <div>
+          <label>
+            <input
+              type="radio"
+              name="renderer"
+              value="svg"
+              checked={renderer === 'svg'}
+              onChange={() => setRenderer('svg')}
+            />
+            SVG
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="renderer"
+              value="webgl"
+              checked={renderer === 'webgl'}
+              onChange={() => setRenderer('webgl')}
+            />
+            WebGL
+          </label>
+        </div>
       </ChartControls>
 
       <Plot
         data={[
           {
-            type: 'scatter',
+            type: rendererOptions[renderer],
             mode: 'lines+points',
             x: xArray,
             y: yArray,
