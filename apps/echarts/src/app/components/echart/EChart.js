@@ -54,9 +54,9 @@ import {
   DataZoomComponent,
   DataZoomInsideComponent,
   DataZoomSliderComponent,
-  // VisualMapComponent,
-  // VisualMapContinuousComponent,
-  // VisualMapPiecewiseComponent,
+  VisualMapComponent,
+  VisualMapContinuousComponent,
+  VisualMapPiecewiseComponent,
   // AriaComponent,
   // TransformComponent,
   DatasetComponent,
@@ -67,7 +67,7 @@ import {
   // SVGRenderer,
 } from 'echarts/renderers';
 
-import lightTheme from './themes';
+import { lightTheme, darkTheme } from './themes';
 
 // Register the required components
 echarts.use([
@@ -87,12 +87,13 @@ echarts.use([
   GridComponent,
   BarChart,
   CanvasRenderer,
+  VisualMapComponent,
+  VisualMapContinuousComponent,
+  VisualMapPiecewiseComponent,
 ]);
 
 echarts.registerTheme('light', lightTheme);
-echarts.registerTheme('dark', {
-  backgroundColor: 'grey',
-});
+echarts.registerTheme('dark', darkTheme);
 
 const EChart = ({ options, theme = 'light' }) => (
   // The usage of ReactEChartsCore are same with above.

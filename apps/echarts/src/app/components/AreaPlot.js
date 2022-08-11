@@ -11,6 +11,7 @@ const AreaPlot = () => {
   const [downsample, setDownsample] = useState(false);
   const [includeNegatives, setIncludeNegatives] = useState(false);
   const [showMultiple, setShowMultiple] = useState(false);
+  const [showAnnotations, setShowAnnotations] = useState(false);
 
   const generatedData = useMemo(
     () => generateTimeseriesData(numberOfPoints, 60, includeNegatives),
@@ -27,6 +28,41 @@ const AreaPlot = () => {
     return formatData(newData);
   };
 
+  const annotations = {
+    markPoint: {
+      symbol: 'pin',
+      symbolSize: [60, 50],
+      data: [{ name: 'Average', type: 'average' }],
+    },
+    markLine: {
+      symbolSize: 0,
+      label: { position: 'insideEndBottom', formatter: '{b}: {c}' },
+      data: [
+        { name: 'Max Point', type: 'max' },
+        {
+          name: 'Test Data',
+          xAxis: '2020-01-01 07:33:00',
+          label: {
+            position: 'insideEndBottom',
+            rotate: '0',
+            offset: [65, 0],
+            formatter: '{b}',
+          },
+        },
+        {
+          name: 'Train Data',
+          xAxis: '2020-01-01 07:33:00',
+          label: {
+            position: 'insideEndTop',
+            formatter: '{b}',
+            rotate: '0',
+            offset: [-5, 21],
+          },
+        },
+      ],
+    },
+  };
+
   const options = {
     grid: { top: 8, right: 8, bottom: 24, left: 36 },
     xAxis: {
@@ -35,6 +71,17 @@ const AreaPlot = () => {
     },
     yAxis: {
       type: 'value',
+    },
+    toolbox: {
+      feature: {
+        dataZoom: {
+          yAxisIndex: 0,
+        },
+        saveAsImage: {
+          name: 'area-plot',
+          backgroundColor: 'white',
+        },
+      },
     },
     dataZoom: [
       {
@@ -55,12 +102,19 @@ const AreaPlot = () => {
     },
   };
 
+  if (showAnnotations) {
+    options.series[0] = { ...options.series[0], ...annotations };
+  }
+
   if (showMultiple) {
     options.series.push({
       type: 'line',
       showSymbol: showPoints,
       sampling: downsample ? 'lttb' : null,
-      areaStyle: {},
+      areaStyle: {
+        color: 'green', // setting different area fill
+        opacity: 0.3,
+      },
       data: generateNewData(),
     });
   }
@@ -84,6 +138,11 @@ const AreaPlot = () => {
           label="Include Negatives"
           isOn={includeNegatives}
           setIsOn={setIncludeNegatives}
+        />
+        <Toggle
+          label="Show Annotations"
+          isOn={showAnnotations}
+          setIsOn={setShowAnnotations}
         />
         <Toggle
           label="Multiple Series"

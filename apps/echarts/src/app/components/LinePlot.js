@@ -10,6 +10,8 @@ const LinePlot = () => {
   const [showPoints, setShowPoints] = useState(true);
   const [downsample, setDownsample] = useState(false);
   const [showMultiple, setShowMultiple] = useState(false);
+  const [showSynced, setShowSynced] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(false);
 
   const generatedData = useMemo(
     () => generateTimeseriesData(numberOfPoints),
@@ -62,14 +64,110 @@ const LinePlot = () => {
     },
   };
 
+  if (showOverlay) {
+    options.series[0].markArea = {
+      label: { show: false },
+      itemStyle: { borderColor: 'pink', borderWidth: 2 },
+      emphasis: {
+        label: { show: true, position: 'insideMiddle' },
+      }, // show name on hover
+      data: [
+        [
+          {
+            name: 'lower bound',
+            xAxis: '2020-01-01 07:10:00',
+            itemStyle: { color: 'pink' },
+          },
+          { xAxis: '2020-01-01 07:15:00' },
+        ],
+        [
+          {
+            name: 'lower bound',
+            xAxis: '2020-01-01 07:30:00',
+            itemStyle: { color: 'pink' },
+          },
+          { xAxis: '2020-01-01 07:30:01' },
+        ],
+      ],
+    };
+  }
+
   if (showMultiple) {
     options.series.push({
       type: 'line',
       showSymbol: showPoints,
       sampling: downsample ? 'lttb' : null,
+      step: 'end', // interpolation method
       data: generateNewData(),
     });
   }
+
+  const optionsSyncedCharts = {
+    grid: [
+      { right: 8, left: 36, height: '30%' },
+      { right: 8, left: 36, height: '30%', top: '55%', bottom: 90 },
+    ],
+    xAxis: [
+      {
+        type: 'time',
+        boundaryGap: false,
+        axisLabel: {
+          show: false,
+        },
+        min: '2020-01-01 07:01:00', // note: important to set min/max when linking plots
+        max: '2020-01-01 08:40:00', // so axis ticks line up
+      },
+      {
+        type: 'time',
+        boundaryGap: false,
+        axisLabel: {
+          formatter: monthFormatter,
+        },
+        axisTick: {
+          alignWithLabel: true,
+        },
+        min: '2020-01-01 07:01:00',
+        max: '2020-01-01 08:40:00',
+        gridIndex: 1,
+      },
+    ],
+    yAxis: [
+      {
+        type: 'value',
+      },
+      {
+        type: 'value',
+        gridIndex: 1,
+      },
+    ],
+    axisPointer: {
+      link: [
+        {
+          xAxisIndex: 'all',
+        },
+      ],
+    },
+    dataZoom: [{ type: 'inside', xAxisIndex: [0, 1] }],
+    series: [
+      {
+        type: 'line',
+        showSymbol: showPoints,
+        sampling: downsample ? 'lttb' : null,
+        data,
+      },
+      {
+        type: 'line',
+        xAxisIndex: 1,
+        yAxisIndex: 1,
+        showSymbol: showPoints,
+        sampling: downsample ? 'lttb' : null,
+        data: generateNewData(),
+      },
+    ],
+    tooltip: {
+      trigger: 'axis',
+    },
+  };
 
   return (
     <>
@@ -87,14 +185,30 @@ const LinePlot = () => {
           setIsOn={setDownsample}
         />
         <Toggle
+          label="Show Overlay"
+          isOn={showOverlay}
+          setIsOn={setShowOverlay}
+        />
+        <Toggle
           label="Multiple Series"
           isOn={showMultiple}
           setIsOn={setShowMultiple}
         />
+        <Toggle
+          label="Syncronized Plots"
+          isOn={showSynced}
+          setIsOn={setShowSynced}
+        />
       </ControlBar>
-      <Wrapper>
-        <EChart options={options} />
-      </Wrapper>
+      {showSynced ? (
+        <Wrapper>
+          <EChart options={optionsSyncedCharts} />
+        </Wrapper>
+      ) : (
+        <Wrapper>
+          <EChart options={options} />
+        </Wrapper>
+      )}
     </>
   );
 };
