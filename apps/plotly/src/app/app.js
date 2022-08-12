@@ -1,9 +1,10 @@
-import { Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes, NavLink as UnstyledNavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Home from './home/Home';
 import LineChart from './line-chart/LineChart';
 import BarChart from './bar-chart/BarChart';
+import Histogram from './histogram/Histogram';
 
 const StyledApp = styled.div`
   // Your style here
@@ -24,12 +25,16 @@ export default function App() {
         <li>
           <NavLink to="/bar-chart">Bar Chart</NavLink>
         </li>
+        <li>
+          <NavLink to="/histogram">Histogram</NavLink>
+        </li>
       </Navigation>
 
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/line-chart" element={<LineChart />} />
         <Route path="/bar-chart" element={<BarChart />} />
+        <Route path="/histogram" element={<Histogram />} />
       </Routes>
       {/* END: routes */}
     </StyledApp>

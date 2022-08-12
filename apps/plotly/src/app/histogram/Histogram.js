@@ -1,15 +1,15 @@
 import styled from 'styled-components/macro';
 import { useState } from 'react';
 
-import { generateBarData } from '@charts-poc-mono/data-utils';
+import { generateHistogramData } from '@charts-poc-mono/data-utils';
 
 import Plot from '../plotting';
 
-export default function BarChart(props) {
-  const [numberOfBars, setNumberOfBars] = useState(1000);
+export default function Histogram(props) {
+  const [numberOfPoints, setNumberOfPoints] = useState(1000);
 
   // Prepare data
-  const rawData = generateBarData(numberOfBars);
+  const rawData = generateHistogramData(numberOfPoints);
 
   const xArray = [];
   const yArray = [];
@@ -26,8 +26,8 @@ export default function BarChart(props) {
           <label>Number of points:</label>
           <input
             type="number"
-            value={numberOfBars}
-            onChange={(e) => setNumberOfBars(e.target.value)}
+            value={numberOfPoints}
+            onChange={(e) => setNumberOfPoints(e.target.value)}
           />
         </div>
       </ChartControls>
@@ -35,13 +35,12 @@ export default function BarChart(props) {
       <Plot
         data={[
           {
-            type: 'bar',
             x: xArray,
-            y: yArray,
+            type: 'histogram',
           },
         ]}
         layout={{
-          title: 'Bar chart',
+          title: 'Histogram',
         }}
         config={{
           scrollZoom: true,
