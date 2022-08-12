@@ -2,12 +2,14 @@ import { Route, Routes, NavLink } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import AreaPlot from './components/AreaPlot';
 import BarPlot from './components/BarPlot';
+import CategoryLine from './components/CategoryLine';
 import ComboPlot from './components/ComboPlot';
 import HistogramPlot from './components/HistogramPlot';
 import HomePage from './components/HomePage';
 
 import LinePlot from './components/LinePlot';
 import SactterPlot from './components/ScatterPlot';
+import SactterPlotMany from './components/ScatterPlotMany';
 
 const StyledApp = styled.div``;
 const NavBar = styled.div``;
@@ -49,10 +51,16 @@ export function App() {
             <Link to="/line">Line Plot</Link>
           </NavItem>
           <NavItem>
+            <Link to="/cat-line">Cat Line Plot</Link>
+          </NavItem>
+          <NavItem>
             <Link to="/area">Area Plot</Link>
           </NavItem>
           <NavItem>
             <Link to="/scatter">Scatter Plot</Link>
+          </NavItem>
+          <NavItem>
+            <Link to="/scatter-many">Scatter Many</Link>
           </NavItem>
           <NavItem>
             <Link to="/bar">Bar Plot</Link>
@@ -68,8 +76,10 @@ export function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/line" element={<LinePlot />} />
+        <Route path="/cat-line" element={<CategoryLine />} />
         <Route path="/area" element={<AreaPlot />} />
         <Route path="/scatter" element={<SactterPlot />} />
+        <Route path="/scatter-many" element={<SactterPlotMany />} />
         <Route path="/bar" element={<BarPlot />} />
         <Route path="/histogram" element={<HistogramPlot />} />
         <Route path="/combo" element={<ComboPlot />} />
