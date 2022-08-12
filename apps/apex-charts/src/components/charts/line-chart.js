@@ -7,8 +7,7 @@ import './Charts.css';
 
 const LineChart = (props) => {
   const [numberOfPoints, setNumberOfPoints] = useState(100);
-  const [showPoints, setShowPoints] = useState(true);
-  const [downsample, setDownsample] = useState(false);
+  const [showMarkers, setShowMarkers] = useState(0);
 
   const generatedData = useMemo(
     () => generateTimeseriesData(numberOfPoints),
@@ -41,7 +40,12 @@ const LineChart = (props) => {
       curve: 'smooth',
       width: 3,
     },
+    markers: {
+      size: showMarkers ? 3 : 0,
+    },
   };
+
+  console.log(generatedData);
 
   return (
     <>
@@ -51,12 +55,11 @@ const LineChart = (props) => {
           value={numberOfPoints}
           setValue={setNumberOfPoints}
         />
-        {/* <Toggle label="Show Points" isOn={showPoints} setIsOn={setShowPoints} />
         <Toggle
-          label="Downsample Data"
-          isOn={downsample}
-          setIsOn={setDownsample}
-        /> */}
+          label="Show Markers"
+          isOn={showMarkers}
+          setIsOn={setShowMarkers}
+        />
       </ControlBar>
       <Wrapper>
         <Chart

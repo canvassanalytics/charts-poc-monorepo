@@ -7,28 +7,29 @@ import './Charts.css';
 
 const BarNumeric = (props) => {
   const [numberOfPoints, setNumberOfPoints] = useState(100);
-  const [showPoints, setShowPoints] = useState(true);
-  const [downsample, setDownsample] = useState(false);
+  const [numberOfBins, setNumberOfBins] = useState(100);
 
   const generatedData = useMemo(
-    () => generateHistogramData(numberOfPoints),
-    [numberOfPoints]
+    () => generateHistogramData(numberOfBins),
+    [numberOfBins]
   );
+
   const data = useMemo(() => formatData(generatedData), [generatedData]);
 
   const series = [
     //data on the y-axis
     {
-      name: 'Date',
+      name: 'Data',
       data: generatedData,
     },
   ];
 
+  console.log(generatedData);
   const options = {
     //data on the x-axis
-    chart: { id: 'line-chart' },
+    chart: { id: 'bar-chart' },
     xaxis: {
-      categories: generatedData,
+      type: 'numeric',
     },
     dataLabels: {
       enabled: false,
@@ -43,16 +44,10 @@ const BarNumeric = (props) => {
     <>
       <ControlBar>
         <NumericInput
-          label="Number of Points"
-          value={numberOfPoints}
-          setValue={setNumberOfPoints}
+          label="Number of Bins"
+          value={numberOfBins}
+          setValue={setNumberOfBins}
         />
-        {/* <Toggle label="Show Points" isOn={showPoints} setIsOn={setShowPoints} /> */}
-        {/* <Toggle
-          label="Downsample Data"
-          isOn={downsample}
-          setIsOn={setDownsample}
-        /> */}
       </ControlBar>
       <Wrapper>
         <Chart

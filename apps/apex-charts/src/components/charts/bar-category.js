@@ -6,28 +6,26 @@ import { NumericInput, Toggle } from '../shared/input';
 import './Charts.css';
 
 const BarCategory = (props) => {
-  const [numberOfPoints, setNumberOfPoints] = useState(100);
-  const [showPoints, setShowPoints] = useState(true);
-  const [downsample, setDownsample] = useState(false);
+  const [numberOfBars, setNumberOfBars] = useState(5);
+  const [includeNegatives, setIncludeNegatives] = useState(false);
 
   const generatedData = useMemo(
-    () => generateBarData(numberOfPoints),
-    [numberOfPoints]
+    () => generateBarData(numberOfBars, includeNegatives),
+    [numberOfBars, includeNegatives]
   );
   const data = useMemo(() => formatData(generatedData), [generatedData]);
 
   const series = [
     //data on the y-axis
     {
-      data: data,
+      data: generatedData,
     },
   ];
 
   const options = {
     //data on the x-axis
-    chart: { id: 'line-chart' },
+    chart: { id: 'bar-chart' },
     xaxis: {
-      type: 'datetime',
       boundaryGap: true,
       tickAmount: 10,
     },
@@ -42,20 +40,20 @@ const BarCategory = (props) => {
     },
   };
 
+  console.log(generatedData);
   return (
     <>
       <ControlBar>
         <NumericInput
-          label="Number of Points"
-          value={numberOfPoints}
-          setValue={setNumberOfPoints}
+          label="Number of Bars"
+          value={numberOfBars}
+          setValue={setNumberOfBars}
         />
-        {/* <Toggle label="Show Points" isOn={showPoints} setIsOn={setShowPoints} /> */}
-        {/* <Toggle
-          label="Downsample Data"
-          isOn={downsample}
-          setIsOn={setDownsample}
-        /> */}
+        <Toggle
+          label="Include Negatives"
+          isOn={includeNegatives}
+          setIsOn={setIncludeNegatives}
+        />
       </ControlBar>
       <Wrapper>
         <Chart
