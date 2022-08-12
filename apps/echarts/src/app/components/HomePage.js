@@ -5,6 +5,7 @@ const HomePage = () => {
   return (
     <Wrapper>
       <h1>ECharts POC</h1>
+      <br /> <br />
       <Link href="https://echarts.apache.org/en/option.html#title">
         Apache ECharts
       </Link>
