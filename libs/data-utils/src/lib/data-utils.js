@@ -118,3 +118,30 @@ export function generateHistogramData(numberOfBins = 100) {
 
   return data;
 }
+
+export function generateApexScatterplotsData(
+  numberOfPoints = 1000,
+  resolutionInSeconds = 60
+) {
+  /*
+    data = [
+      {timestamp: "2020-01-01T12:00:00Z", x: 12.23, y: 5.23},
+      {timestamp: "2020-01-01T12:00:00Z", x: 13.22, y: 2.43},
+      ...
+    ]
+  */
+  let currentDate = new Date('2020-01-01T12:00:00Z');
+  let x = 0;
+  const data = [];
+
+  for (let i = 0; i < numberOfPoints; i++) {
+    currentDate = new Date(currentDate.getTime() + resolutionInSeconds * 1000);
+    x = x + (x > 50 ? -Math.random() : Math.random()) * 10;
+    data.push({
+      y: (Math.random(i) * numberOfPoints).toFixed(2),
+      // y: (Math.sin(0.2 * i) * 10).toFixed(2),
+      x: currentDate.toISOString(),
+    });
+  }
+  return data;
+}
