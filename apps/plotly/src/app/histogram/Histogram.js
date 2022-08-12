@@ -35,7 +35,7 @@ export default function Histogram(props) {
       <Plot
         data={[
           {
-            x: xArray,
+            x: yArray,
             type: 'histogram',
           },
         ]}
