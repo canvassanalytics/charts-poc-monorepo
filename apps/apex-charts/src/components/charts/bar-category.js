@@ -2,16 +2,15 @@ import React, { useMemo, useState } from 'react';
 import Chart from 'react-apexcharts';
 import { generateBarData } from '@charts-poc-mono/data-utils';
 import { Wrapper, ControlBar } from '../shared/commonComponents';
-import { NumericInput, Toggle } from '../shared/input';
+import { NumericInput } from '../shared/input';
 import './Charts.css';
 
 const BarCategory = (props) => {
   const [numberOfBars, setNumberOfBars] = useState(5);
-  const [includeNegatives, setIncludeNegatives] = useState(false);
 
   const generatedData = useMemo(
-    () => generateBarData(numberOfBars, includeNegatives),
-    [numberOfBars, includeNegatives]
+    () => generateBarData(numberOfBars),
+    [numberOfBars]
   );
   const data = useMemo(() => formatData(generatedData), [generatedData]);
 
@@ -49,11 +48,11 @@ const BarCategory = (props) => {
           value={numberOfBars}
           setValue={setNumberOfBars}
         />
-        <Toggle
+        {/* <Toggle
           label="Include Negatives"
           isOn={includeNegatives}
           setIsOn={setIncludeNegatives}
-        />
+        /> */}
       </ControlBar>
       <Wrapper>
         <Chart

@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import Chart from 'react-apexcharts';
-import { generateScatterplotsData } from '@charts-poc-mono/data-utils';
+import { generateApexScatterplotsData } from '@charts-poc-mono/data-utils';
 import { Wrapper, ControlBar } from '../shared/commonComponents';
 import { NumericInput } from '../shared/input';
 import './Charts.css';
@@ -9,7 +9,7 @@ const ScatterPlot = (props) => {
   const [numberOfPoints, setNumberOfPoints] = useState(100);
 
   const generatedData = useMemo(
-    () => generateScatterplotsData(numberOfPoints),
+    () => generateApexScatterplotsData(numberOfPoints),
     [numberOfPoints]
   );
   const data = useMemo(() => formatData(generatedData), [generatedData]);

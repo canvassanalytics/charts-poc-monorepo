@@ -5,9 +5,9 @@ This project was generated using [Nx](https://nx.dev).
 ## Deployed apps
 
 - https://echarts-canvass-poc.netlify.app
-- https://plotly-canvass-poc.netlify.app (pending)
-- https://apex-canvass-poc.netlify.app (pending)
-- https://uplot-canvass-poc.netlify.app (pending)
+- https://plotly-canvass-poc.netlify.app
+- https://apex-canvass-poc.netlify.app
+- https://uplot-canvass-poc.netlify.app
 
 ## Generate a new app
 
