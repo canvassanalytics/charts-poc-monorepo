@@ -16,13 +16,13 @@ export default function App() {
       {/* Feel free to move and update them to fit your needs */}
       <Navigation role="navigation">
         <li>
-          <Link to="/">Home</Link>
+          <NavLink to="/">Home</NavLink>
         </li>
         <li>
-          <Link to="/line-chart">Line Chart</Link>
+          <NavLink to="/line-chart">Line Chart</NavLink>
         </li>
         <li>
-          <Link to="/bar-chart">Bar Chart</Link>
+          <NavLink to="/bar-chart">Bar Chart</NavLink>
         </li>
       </Navigation>
 
@@ -56,14 +56,17 @@ const Navigation = styled.ul`
   }
 
   a {
-    text-decoration: none;
-  }
-
-  a:visited {
     color: black;
+    text-decoration: none;
   }
 
   a:hover {
     background-color: yellow;
+  }
+`;
+
+const NavLink = styled(UnstyledNavLink)`
+  &.active {
+    font-weight: bold;
   }
 `;
