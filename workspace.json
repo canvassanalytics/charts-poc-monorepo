@@ -2,14 +2,126 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
-    "echarts": "apps/echarts",
-    "echarts-e2e": "apps/echarts-e2e",
-    "plotly": "apps/plotly",
-    "plotly-e2e": "apps/plotly-e2e",
     "data-utils": {
       "root": "libs/data-utils",
       "sourceRoot": "libs/data-utils/src",
       "projectType": "library"
+    },
+    "echarts": "apps/echarts",
+    "echarts-e2e": "apps/echarts-e2e",
+    "plotly": "apps/plotly",
+    "plotly-e2e": "apps/plotly-e2e",
+    "react-table": {
+      "root": "apps/react-table",
+      "sourceRoot": "apps/react-table/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:webpack",
+          "outputs": ["{options.outputPath}"],
+          "defaultConfiguration": "production",
+          "options": {
+            "compiler": "babel",
+            "outputPath": "dist/apps/react-table",
+            "index": "apps/react-table/src/index.html",
+            "baseHref": "/",
+            "main": "apps/react-table/src/main.tsx",
+            "polyfills": "apps/react-table/src/polyfills.ts",
+            "tsConfig": "apps/react-table/tsconfig.app.json",
+            "assets": [
+              "apps/react-table/src/favicon.ico",
+              "apps/react-table/src/assets"
+            ],
+            "styles": [],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "development": {
+              "extractLicenses": false,
+              "optimization": false,
+              "sourceMap": true,
+              "vendorChunk": true
+            },
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/react-table/src/environments/environment.ts",
+                  "with": "apps/react-table/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "defaultConfiguration": "development",
+          "options": {
+            "buildTarget": "react-table:build",
+            "hmr": true
+          },
+          "configurations": {
+            "development": {
+              "buildTarget": "react-table:build:development"
+            },
+            "production": {
+              "buildTarget": "react-table:build:production",
+              "hmr": false
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/react-table/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/react-table"],
+          "options": {
+            "jestConfig": "apps/react-table/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "react-table-e2e": {
+      "root": "apps/react-table-e2e",
+      "sourceRoot": "apps/react-table-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/react-table-e2e/cypress.config.ts",
+            "devServerTarget": "react-table:serve:development",
+            "testingType": "e2e"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "react-table:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/react-table-e2e/**/*.{js,ts}"]
+          }
+        }
+      },
+      "tags": [],
+      "implicitDependencies": ["react-table"]
     }
   }
 }
