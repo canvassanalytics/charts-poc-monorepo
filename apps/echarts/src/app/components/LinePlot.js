@@ -7,8 +7,8 @@ import { NumericInput, Toggle } from './common/Inputs';
 
 const LinePlot = () => {
   const [numberOfPoints, setNumberOfPoints] = useState(100);
-  const [showPoints, setShowPoints] = useState(true);
-  const [downsample, setDownsample] = useState(false);
+  const [showPoints, setShowPoints] = useState(false);
+  const [downsample, setDownsample] = useState(true);
   const [showMultiple, setShowMultiple] = useState(false);
   const [showSynced, setShowSynced] = useState(false);
   const [showOverlay, setShowOverlay] = useState(false);
@@ -23,6 +23,7 @@ const LinePlot = () => {
     const newData = generateTimeseriesData(Math.floor(numberOfPoints / 2), 120);
     return formatData(newData);
   };
+  console.log(data);
 
   let pastday;
   function monthFormatter(value, index) {
@@ -215,7 +216,9 @@ const LinePlot = () => {
 
 function formatData(data) {
   if (!data) return [];
-  return data.map((entry) => [entry.x, entry.y]);
+  const newData = data.map((entry) => [entry.x, entry.y]);
+  newData[5] = ['2020-01-01T12:06:00.000Z', 30];
+  return newData;
 }
 
 export default LinePlot;

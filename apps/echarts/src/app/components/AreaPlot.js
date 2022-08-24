@@ -13,6 +13,22 @@ const AreaPlot = () => {
   const [showMultiple, setShowMultiple] = useState(false);
   const [showAnnotations, setShowAnnotations] = useState(false);
 
+  const [userAnnotations, setAnnotations] = useState({});
+
+  const onClick = ({ value, seriesIndex }) => {
+    console.log(value, seriesIndex);
+    const seriesName = `series${seriesIndex}`;
+    const seriesAnnotations = userAnnotations?.[seriesName] || [];
+    setAnnotations({
+      ...userAnnotations,
+      [seriesName]: [
+        ...seriesAnnotations,
+        { value: value[1], xAxis: value[0], yAxis: value[1] },
+      ],
+    });
+  };
+  console.log(userAnnotations);
+
   const generatedData = useMemo(
     () => generateTimeseriesData(numberOfPoints, 60, includeNegatives),
     [numberOfPoints, includeNegatives]
@@ -94,6 +110,11 @@ const AreaPlot = () => {
         showSymbol: showPoints,
         sampling: downsample ? 'lttb' : null,
         areaStyle: {},
+        markPoint: {
+          symbol: 'pin',
+          symbolSize: [60, 50],
+          data: userAnnotations?.series0 || [],
+        },
         data,
       },
     ],
@@ -114,6 +135,11 @@ const AreaPlot = () => {
       areaStyle: {
         color: 'green', // setting different area fill
         opacity: 0.3,
+      },
+      markPoint: {
+        symbol: 'pin',
+        symbolSize: [60, 50],
+        data: userAnnotations?.series1 || [],
       },
       data: generateNewData(),
     });
@@ -151,7 +177,7 @@ const AreaPlot = () => {
         />
       </ControlBar>
       <Wrapper>
-        <EChart options={options} />
+        <EChart options={options} onEvents={{ click: onClick }} />
       </Wrapper>
     </>
   );

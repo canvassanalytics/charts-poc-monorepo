@@ -95,7 +95,7 @@ echarts.use([
 echarts.registerTheme('light', lightTheme);
 echarts.registerTheme('dark', darkTheme);
 
-const EChart = ({ options, theme = 'light' }) => (
+const EChart = ({ options, theme = 'light', onEvents = {} }) => (
   // The usage of ReactEChartsCore are same with above.
   <ReactEChartsCore
     echarts={echarts}
@@ -105,7 +105,7 @@ const EChart = ({ options, theme = 'light' }) => (
     theme={theme}
     style={{ height: '100%', width: '100%' }}
     // onChartReady={onReady}
-    // onEvents={events}
+    onEvents={onEvents}
     // opts={opts}
   />
 );
